@@ -8,11 +8,17 @@
     "build": "tsc -p ."
   },
   "devDependencies": {
+    "@types/node": "^22.5.4",
+    "prisma": "^5.19.1",
+    "ts-node": "^10.9.2",
     "tsc-watch": "^6.2.0",
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "@prisma/client": "^5.19.1",
+    "dotenv": "^16.4.5",
     "ioredis": "^5.4.1",
+    "kafkajs": "^2.2.4",
     "socket.io": "^4.7.5"
   }
 }

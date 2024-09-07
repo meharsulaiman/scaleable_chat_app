@@ -1,5 +1,6 @@
 import { Server } from 'socket.io';
 import Redis from 'ioredis';
+import { produceMessage } from './kafka';
 
 const REDIS_URL = process.env.REDIS_URL || '';
 
@@ -33,9 +34,11 @@ class SocketService {
       });
     });
 
-    sub.on('message', (channel, message) => {
+    sub.on('message', async (channel, message) => {
       if (channel === 'MESSAGES') {
         io.emit('event:message', message);
+        await produceMessage(message);
+        console.log('Message Produce to Kafka:', message);
       }
     });
   }
